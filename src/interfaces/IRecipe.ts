@@ -1,5 +1,7 @@
 export interface IRecipe {
+    recipeImg: string;
     recipeName: string;
-    recipeUrl: string;
     ingredients: string[];
+    steps: string[];
+    recipeUrl?: string;
 }

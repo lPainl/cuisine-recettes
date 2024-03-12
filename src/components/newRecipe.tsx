@@ -1,7 +1,8 @@
 import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/solid';
 import { ChangeEvent, useState } from 'react';
 import { IRecipe } from '../interfaces/IRecipe';
-import CustomInput from './CustomInput';
+import CustomButton from './customElements/CustomButton';
+import CustomInput from './customElements/CustomInput';
 
 const NewRecipe = () => {
     const [recipe, setRecipe] = useState<IRecipe>({
@@ -52,16 +53,18 @@ const NewRecipe = () => {
     return (
         <>
             <form
-                className="flex flex-col gap-7 rounded-lg bg-gray-200 p-4 lg:m-auto lg:max-w-3xl"
+                className="flex flex-col gap-7 rounded-lg bg-gray-200 p-4 lg:m-auto lg:max-w-xl"
                 onSubmit={handleSubmit}
             >
                 <header>
                     <h2 className="text-right">Agregar nueva receta</h2>
                 </header>
                 <div className="flex items-center gap-2">
-                    <label htmlFor="recipeName flex-none">Nombre receta:</label>
+                    <label className="" htmlFor="recipeName">
+                        Nombre receta:
+                    </label>
                     <CustomInput
-                        className="grow"
+                        className="ml-auto"
                         type="text"
                         id="recipeName"
                         name="recipeName"
@@ -95,6 +98,7 @@ const NewRecipe = () => {
                             {recipe.ingredients.map((ingredient, index) => (
                                 <div key={index} className="flex gap-3">
                                     <CustomInput
+                                        className="max-w-60"
                                         name="ingredients"
                                         value={ingredient}
                                         placeholder="Ingrese el nuevo ingrediente"
@@ -123,6 +127,7 @@ const NewRecipe = () => {
                 <div className="flex items-center gap-2">
                     <label htmlFor="recipeUrl">Link receta:</label>
                     <CustomInput
+                        className="ml-auto"
                         type="text"
                         id="recipeUrl"
                         name="recipeUrl"
@@ -132,12 +137,9 @@ const NewRecipe = () => {
                     />
                 </div>
 
-                <button
-                    className="ml-auto w-fit rounded-full border border-gray-900 bg-violet-400 px-3 py-2"
-                    type="submit"
-                >
+                <CustomButton type="submit" className="ml-auto">
                     Guardar
-                </button>
+                </CustomButton>
             </form>
         </>
     );

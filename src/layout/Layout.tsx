@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import CustomHeader from './components/CustomHeader';
-import NewRecipe from './components/NewRecipe';
+import { Outlet } from 'react-router-dom';
+import CustomHeader from '../components/header/CustomHeader';
+import HeaderContent from '../components/header/HeaderContent';
 
-const App = () => {
+const Layout = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+
     useEffect(() => {
         menuOpen
             ? document.body.classList.add('overflow-hidden')
@@ -12,12 +14,15 @@ const App = () => {
 
     return (
         <div className="m-5 flex flex-col gap-8">
-            <CustomHeader menuOpen={menuOpen} onOpenMenu={setMenuOpen} />
+            <CustomHeader menuOpen={menuOpen} onOpenMenu={setMenuOpen}>
+                <HeaderContent onOpenMenu={setMenuOpen} />
+            </CustomHeader>
+
             <main>
-                <NewRecipe></NewRecipe>
+                <Outlet />
             </main>
         </div>
     );
 };
 
-export default App;
+export default Layout;

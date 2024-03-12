@@ -10,7 +10,7 @@ const CustomInput = (
         <input
             type="text"
             {...inputProps}
-            className={`${inputProps.className ?? inputProps.className} rounded-lg border border-gray-400 p-2`}
+            className={`max-w-96 ${inputProps.className ?? inputProps.className} w-full  rounded-lg border border-gray-400 p-2`}
         />
     );
 };

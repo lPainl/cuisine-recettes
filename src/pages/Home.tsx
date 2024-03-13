@@ -77,10 +77,10 @@ const Home = () => {
                     />
                 </div>
 
-                <CustomButton>
+                <CustomButton disabled={!(user.email && user.password)}>
                     <div className="flex gap-2">
                         Login
-                        <ArrowRightCircleIcon className="size-6 text-gray-900" />
+                        <ArrowRightCircleIcon className="size-6" />
                     </div>
                 </CustomButton>
             </form>

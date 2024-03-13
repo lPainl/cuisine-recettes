@@ -30,14 +30,15 @@ const HeaderContent = ({ onOpenMenu }: HeaderContentProps) => {
     };
 
     const getNavLinkClassName = ({ isActive }: { isActive: boolean }) => {
-        let linkClass = 'flex items-center gap-2';
-        linkClass = isActive ? linkClass + ' bg-green-400' : linkClass;
+        let linkClass = 'flex items-center gap-2 px-2';
+        const activeClass = 'bg-gray-200 rounded-md lg:p-2 w-fit';
+        linkClass = isActive ? `${linkClass} ${activeClass}` : linkClass;
         return linkClass;
     };
 
     return (
-        <section className="flex size-full flex-col rounded-r-md border-r border-gray-700 bg-white p-4 lg:flex-row lg:justify-between lg:rounded-none lg:border-none lg:p-0">
-            <header>
+        <section className="flex size-full flex-col rounded-r-md border-r border-gray-700 bg-white p-4 lg:flex-row lg:justify-end lg:rounded-none lg:border-none lg:p-0">
+            <header className="lg:hidden">
                 <h2>Menu</h2>
             </header>
             <nav className="mt-8 flex h-full flex-col lg:mt-0 lg:flex-row lg:gap-10">

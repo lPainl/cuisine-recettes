@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore/lite';
 import { IUser } from '../interfaces/IUser';
 
 const firebaseConfig = {
@@ -13,12 +14,17 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
 
-export const login = ({ email, password }: IUser) => {
+const auth = getAuth(app);
+
+const login = ({ email, password }: IUser) => {
     return signInWithEmailAndPassword(auth, email, password);
 };
 
-export const logout = () => {
+const logout = () => {
     return signOut(auth);
 };
+
+const recipesDB = getFirestore(app);
+
+export { auth, login, logout, recipesDB };

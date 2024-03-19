@@ -20,6 +20,8 @@ const Home = () => {
         email: '',
         password: '',
     });
+    const [loading, setLoading] = useState(false);
+
     const { userWithPrivileges, setUserWithPrivileges } =
         useUserContext() as UserContextType;
 
@@ -45,7 +47,7 @@ const Home = () => {
         try {
             await login(user);
             setUserWithPrivileges(true);
-            navigate('/private');
+            navigate('/management');
         } catch {
             if (modalRef.current) {
                 modalRef.current.openModal();
@@ -55,8 +57,10 @@ const Home = () => {
 
     return (
         <section>
-            <h2>Inicio</h2>
-            <form className=" flex flex-col" onSubmit={handleLogin}>
+            <form
+                className="mx-auto flex flex-col rounded-md bg-gray-200 p-4 md:max-w-[550px]"
+                onSubmit={handleLogin}
+            >
                 <div className="my-8 grid grid-cols-[min-content_auto] items-center gap-x-4 gap-y-4">
                     <label htmlFor="email">Correo</label>
                     <CustomInput
@@ -88,7 +92,7 @@ const Home = () => {
             <CustomButton
                 type="button"
                 importancy="terciary"
-                className="mx-auto mt-8 flex"
+                className="mx-auto mt-4 flex"
                 onClick={() => navigate('/recipes')}
             >
                 <div className="flex items-center gap-2">

@@ -61,7 +61,7 @@ const HeaderContent = ({ onOpenMenu }: HeaderContentProps) => {
                     </NavLink>
                     {userWithPrivileges && (
                         <NavLink
-                            to="/createRecipe"
+                            to="/management"
                             className={getNavLinkClassName}
                             onClick={closeMenu}
                         >

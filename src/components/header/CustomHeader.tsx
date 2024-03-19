@@ -25,7 +25,7 @@ const CustomHeader = ({
                 </div>
             </header>
             <div
-                className={`absolute left-0 top-0 flex h-full w-full bg-gray-500 bg-opacity-70 transition-all duration-500 ease-in-out ${menuOpen ? 'visible' : 'invisible'}`}
+                className={`absolute left-0 top-0 z-50 flex h-full w-full bg-gray-500 bg-opacity-70 transition-all duration-500 ease-in-out ${menuOpen ? 'visible' : 'invisible'}`}
             >
                 <div
                     className={`h-full w-5/6 transition duration-700 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-[150%]'}`}

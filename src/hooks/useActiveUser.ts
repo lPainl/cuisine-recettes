@@ -6,7 +6,7 @@ export const useActiveUser = (userWithPrivileges: boolean) => {
 
     useEffect(() => {
         if (userWithPrivileges) {
-            navigate('/private');
+            navigate('/management');
         }
     }, [userWithPrivileges]);
 };

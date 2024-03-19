@@ -1,8 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import NewRecipe from '../components/NewRecipe';
+import NewRecipe from '../pages/NewRecipe';
 
-import loaderRecipeReader from '../hooks/loaderRecipeReader';
-import { useRecipes } from '../hooks/useRecipes';
 import Layout from '../layout/Layout';
 import LayoutPrivate from '../layout/LayoutPrivate';
 import Home from '../pages/Home';
@@ -22,15 +20,13 @@ export const router = createBrowserRouter([
             {
                 path: '/recipes',
                 element: <RecipesList />,
-                loader: useRecipes,
             },
             {
                 path: '/recipes/:recipeId',
                 element: <RecipeReader />,
-                loader: loaderRecipeReader,
             },
             {
-                path: '/private',
+                path: '/management',
                 element: <LayoutPrivate />,
                 children: [
                     {

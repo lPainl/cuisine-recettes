@@ -8,9 +8,9 @@ name: Deploy to Firebase Hosting on merge
             - main
 
 jobs:
-    test_variables:
-        environment: master
+    build_and_deploy:
         runs-on: ubuntu-latest
+        environment: master
         env:
             VITE_FIREB_API_KEY: '${{ secrets.VITE_FIREB_API_KEY }}'
             VITE_FIREB_AUTH_DOMAIN: '${{ secrets.VITE_FIREB_AUTH_DOMAIN }}'
@@ -20,6 +20,11 @@ jobs:
             VITE_FIREB_APP_ID: '${{ secrets.VITE_FIREB_APP_ID }}'
             VITE_FIREB_MEASUREMENT_ID: '${{ secrets.VITE_FIREB_MEASUREMENT_ID }}'
         steps:
-            - run: |
-                  echo "$VITE_FIREB_PROJECT_ID"
-                  echo "$FALSE"
+            - uses: actions/checkout@v4
+            - run: npm ci && npm run build
+            - uses: FirebaseExtended/action-hosting-deploy@v0
+              with:
+                  repoToken: '${{ secrets.GITHUB_TOKEN }}'
+                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CUISINE_RECETTES }}'
+                  channelId: live
+                  projectId: cuisine-recettes

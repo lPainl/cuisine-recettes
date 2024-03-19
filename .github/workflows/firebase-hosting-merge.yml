@@ -7,29 +7,19 @@ name: Deploy to Firebase Hosting on merge
         branches:
             - main
 
-env:
-    VITE_FIREB_API_KEY: '${{ secrets.VITE_FIREB_API_KEY }}'
-    VITE_FIREB_AUTH_DOMAIN: '${{ secrets.VITE_FIREB_AUTH_DOMAIN }}'
-    VITE_FIREB_PROJECT_ID: '${{ secrets.VITE_FIREB_PROJECT_ID }}'
-    VITE_FIREB_STORAGE_BUCKET: '${{ secrets.VITE_FIREB_STORAGE_BUCKET }}'
-    VITE_FIREB_MESSAGING_SENDER_ID: '${{ secrets.VITE_FIREB_MESSAGING_SENDER_ID }}'
-    VITE_FIREB_APP_ID: '${{ secrets.VITE_FIREB_APP_ID }}'
-    VITE_FIREB_MEASUREMENT_ID: '${{ secrets.VITE_FIREB_MEASUREMENT_ID }}'
-
 jobs:
     test_variables:
+        environment: master
         runs-on: ubuntu-latest
+        env:
+            VITE_FIREB_API_KEY: '${{ secrets.VITE_FIREB_API_KEY }}'
+            VITE_FIREB_AUTH_DOMAIN: '${{ secrets.VITE_FIREB_AUTH_DOMAIN }}'
+            VITE_FIREB_PROJECT_ID: '${{ secrets.VITE_FIREB_PROJECT_ID }}'
+            VITE_FIREB_STORAGE_BUCKET: '${{ secrets.VITE_FIREB_STORAGE_BUCKET }}'
+            VITE_FIREB_MESSAGING_SENDER_ID: '${{ secrets.VITE_FIREB_MESSAGING_SENDER_ID }}'
+            VITE_FIREB_APP_ID: '${{ secrets.VITE_FIREB_APP_ID }}'
+            VITE_FIREB_MEASUREMENT_ID: '${{ secrets.VITE_FIREB_MEASUREMENT_ID }}'
         steps:
-            - run: echo "$VITE_FIREB_PROJECT_ID"
-            - run: echo "$FALSE"
-    build_and_deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - run: npm ci && npm run build
-            - uses: FirebaseExtended/action-hosting-deploy@v0
-              with:
-                  repoToken: '${{ secrets.GITHUB_TOKEN }}'
-                  firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CUISINE_RECETTES }}'
-                  channelId: live
-                  projectId: cuisine-recettes
+            - run: |
+                  echo "$VITE_FIREB_PROJECT_ID"
+                  echo "$FALSE"

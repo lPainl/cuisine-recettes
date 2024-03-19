@@ -17,6 +17,11 @@ env:
     VITE_FIREB_MEASUREMENT_ID: ${{ secrets.VITE_FIREB_MEASUREMENT_ID }}
 
 jobs:
+    test_variables:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "$VITE_FIREB_PROJECT_ID"
+            - run: echo "$FALSE"
     build_and_deploy:
         runs-on: ubuntu-latest
         steps:
